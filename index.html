@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Password Strength Checker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Background -->
+    <div class="background-grid"></div>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+
+    <main class="app">
+      <!-- Header -->
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-icon">✓</div>
+
+          <div>
+            <h1>Password Strength Checker</h1>
+            <p>Cyber Security • Privacy-first analysis</p>
+          </div>
+        </div>
+
+        <div class="privacy-pill" aria-label="Privacy notice">
+          <span></span>
+          Password stays in your browser
+        </div>
+      </header>
+
+      <!-- Main Hero -->
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"> SECURITY ANALYSIS </span>
+
+          <h2>How strong is your password?</h2>
+
+          <p>
+            Enter a password below. The checker evaluates length, character
+            variety, entropy and predictable patterns in real time.
+          </p>
+        </div>
+
+        <!-- Checker -->
+        <div class="checker-card">
+          <!-- Password Input -->
+          <div class="input-wrap">
+            <label for="password"> Password </label>
+
+            <div class="password-row">
+              <input
+                id="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Type a password to analyze..."
+                spellcheck="false"
+              />
+
+              <button
+                id="togglePassword"
+                class="icon-btn"
+                type="button"
+                aria-label="Show password"
+              >
+                ◉
+              </button>
+            </div>
+          </div>
+
+          <!-- Strength Meter -->
+          <div class="meter-section">
+            <div class="score-line">
+              <div>
+                <span class="muted"> STRENGTH </span>
+
+                <strong id="strengthLabel"> Very Weak </strong>
+              </div>
+
+              <div class="score">
+                <span id="score"> 0 </span>
+
+                <small> /100 </small>
+              </div>
+            </div>
+
+            <div class="meter">
+              <div id="meterFill"></div>
+            </div>
+
+            <div class="score-meta">
+              <span id="entropy"> Entropy: 0 bits </span>
+
+              <span id="crackSpace"> Search space: 0 </span>
+            </div>
+          </div>
+
+          <!-- Checklist -->
+          <div class="checklist" id="checklist">
+            <div class="check-item" data-check="length">
+              <span class="check-icon"> × </span>
+
+              <div>
+                <strong> Length </strong>
+
+                <small> Use at least 12 characters </small>
+              </div>
+            </div>
+
+            <div class="check-item" data-check="variety">
+              <span class="check-icon"> × </span>
+
+              <div>
+                <strong> Character variety </strong>
+
+                <small> Uppercase, lowercase, numbers and symbols </small>
+              </div>
+            </div>
+
+            <div class="check-item" data-check="pattern">
+              <span class="check-icon"> × </span>
+
+              <div>
+                <strong> Predictable patterns </strong>
+
+                <small> Avoid sequences and repeated characters </small>
+              </div>
+            </div>
+
+            <div class="check-item" data-check="dictionary">
+              <span class="check-icon"> × </span>
+
+              <div>
+                <strong> Common words </strong>
+
+                <small> Avoid easily guessed dictionary terms </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tips -->
+          <div class="tips" id="tips">
+            <div class="tip-title">Improvement tips</div>
+
+            <ul id="tipList">
+              <li>Start typing to receive personalized suggestions.</li>
+            </ul>
+          </div>
+
+          <!-- Buttons -->
+          <div class="actions">
+            <button id="generateBtn" class="primary-btn" type="button">
+              <span>Generate secure suggestion</span>
+            </button>
+
+            <button id="breachBtn" class="secondary-btn" type="button">
+              <span>Check known breaches</span>
+            </button>
+          </div>
+
+          <!-- Privacy Notice -->
+          <p class="disclaimer">
+            Core scoring is performed locally. The breach check is optional and,
+            when used, sends only a SHA-1 hash prefix using the k-anonymity
+            approach.
+          </p>
+
+          <!-- Breach Result -->
+          <div id="breachResult" class="breach-result" hidden></div>
+        </div>
+      </section>
+
+      <!-- Information -->
+      <section class="info-grid">
+        <article>
+          <span>01</span>
+
+          <h3>Length</h3>
+
+          <p>
+            Longer passwords create a larger search space. This project gives
+            the strongest weight to password length.
+          </p>
+        </article>
+
+        <article>
+          <span>02</span>
+
+          <h3>Entropy</h3>
+
+          <p>
+            Entropy is estimated with E = L × log₂(R), where L is length and R
+            is the character-pool size.
+          </p>
+        </article>
+
+        <article>
+          <span>03</span>
+
+          <h3>Pattern awareness</h3>
+
+          <p>
+            Common words, keyboard sequences and repeated characters reduce the
+            practical strength of a password.
+          </p>
+        </article>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <span>
+          Password Strength Checker • Cyber Security Problem Solving Activity
+        </span>
+
+        <span> Client-side design </span>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
