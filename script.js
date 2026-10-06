@@ -24,6 +24,8 @@ const passwordInput = document.getElementById("password");
 
 const togglePassword = document.getElementById("togglePassword");
 
+const copyPassword = document.getElementById("copyPassword");
+
 const scoreEl = document.getElementById("score");
 
 const labelEl = document.getElementById("strengthLabel");
@@ -475,6 +477,36 @@ togglePassword.addEventListener("click", () => {
     hidden ? "Hide password" : "Show password",
   );
 });
+
+/*
+    Copy Password to Clipboard
+*/
+
+if (copyPassword) {
+  copyPassword.addEventListener("click", async () => {
+    const textToCopy = passwordInput.value;
+    if (!textToCopy) return;
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+    } catch (err) {
+      // Fallback for non-HTTPS or unsupported environments
+      passwordInput.select();
+      document.execCommand("copy");
+    }
+
+    const originalText = copyPassword.textContent;
+    copyPassword.textContent = "✓";
+    copyPassword.classList.add("copied");
+    copyPassword.setAttribute("aria-label", "Password copied");
+
+    setTimeout(() => {
+      copyPassword.textContent = originalText;
+      copyPassword.classList.remove("copied");
+      copyPassword.setAttribute("aria-label", "Copy password");
+    }, 1500);
+  });
+}
 
 /*
     Analyze while typing

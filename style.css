@@ -218,6 +218,7 @@ body {
   margin: 15px 0 20px;
   background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 70%, #818cf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   max-width: 600px;
 }
@@ -269,9 +270,12 @@ body {
 .password-row {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
 .password-row input {
+  flex: 1;
+  min-width: 0;
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(6, 15, 28, 0.8);
@@ -293,12 +297,18 @@ body {
 
 .icon-btn {
   width: 52px;
+  height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(10, 23, 40, 0.8);
   color: #8fa6c0;
   border-radius: 14px;
   cursor: pointer;
   transition: all 0.25s ease;
+  font-size: 16px;
 }
 
 .icon-btn:hover {
@@ -307,6 +317,12 @@ body {
   background: rgba(16, 35, 60, 0.9);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.15);
+}
+
+.icon-btn.copied {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.4);
+  background: rgba(74, 222, 128, 0.15);
 }
 
 /* Meter */
