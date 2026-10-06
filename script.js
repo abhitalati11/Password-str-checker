@@ -43,32 +43,12 @@ const breachResult = document.getElementById("breachResult");
 const generateBtn = document.getElementById("generateBtn");
 
 /*
-    Common passwords / words
+    Common passwords / words loaded from dataset.js (fallback to empty array if missing)
 */
+if (typeof commonWords === "undefined") {
+  window.commonWords = [];
+}
 
-const commonWords = [
-  "password",
-  "passw0rd",
-  "admin",
-  "welcome",
-  "qwerty",
-  "letmein",
-  "login",
-  "monkey",
-  "dragon",
-  "football",
-  "iloveyou",
-  "secret",
-  "hello",
-  "india",
-  "computer",
-  "internet",
-  "master",
-  "summer",
-  "winter",
-  "spring",
-  "autumn",
-];
 
 /*
     Analyze Password
@@ -342,7 +322,12 @@ function render() {
         Score
     */
 
-  scoreEl.textContent = result.score;
+  if (scoreEl.textContent !== String(result.score)) {
+    scoreEl.textContent = result.score;
+    scoreEl.classList.remove("score-pop");
+    void scoreEl.offsetWidth; // Trigger reflow for animation restart
+    scoreEl.classList.add("score-pop");
+  }
 
   /*
         Label
@@ -616,7 +601,7 @@ breachBtn.addEventListener("click", async () => {
 
   breachBtn.disabled = true;
 
-  breachBtn.querySelector("span").textContent = "Checking…";
+  breachBtn.textContent = "Checking…";
 
   breachResult.hidden = false;
 
@@ -701,7 +686,7 @@ breachBtn.addEventListener("click", async () => {
   } finally {
     breachBtn.disabled = false;
 
-    breachBtn.querySelector("span").textContent = "Check known breaches";
+    breachBtn.textContent = "Check known breaches";
   }
 });
 
